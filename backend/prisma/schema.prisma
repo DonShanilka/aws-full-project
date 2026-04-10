@@ -1,24 +1,47 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url = env("DATABASE_URL")
-}
-
-model Item {
-    id          Int @id @default(autoincrement())
-    name        String
-    price       Float
-    quantity    Int
-    createAt    DateTime @default(now())
-    updateAt    DateTime @updatedAt
+  provider = "mysql"
 }
 
 model Customer {
-    id          Int @id @default(autoincrement())
-    name        String
-    mobile      Int
-    itemId      Int
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Item {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float
+  quantity  Int
+  orderItems OrderItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  customerId  Int
+  customer    Customer   @relation(fields: [customerId], references: [id])
+  orderItems  OrderItem[]
+  totalAmount Float
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model OrderItem {
+  id        Int   @id @default(autoincrement())
+  orderId   Int
+  itemId    Int
+  quantity  Int
+  price     Float
+
+  order Order @relation(fields: [orderId], references: [id])
+  item  Item  @relation(fields: [itemId], references: [id])
 }
