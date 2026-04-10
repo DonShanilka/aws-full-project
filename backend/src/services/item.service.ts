@@ -5,3 +5,11 @@ export const createItemService = async (data: Item) => {
     return repo.createItem(data);
 };
 
+export const updateItemService = async (id: number, data: Item) => {
+    return repo.updateItem(id, data);
+};
+
+export const deleteItemService = async (id: number) => {
+    return repo.deleteItem(id);
+}
+
