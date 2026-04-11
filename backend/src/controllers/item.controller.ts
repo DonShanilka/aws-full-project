@@ -9,3 +9,12 @@ export const createItem = async (req: Request, res: Response, next: NextFunction
         next(err);
     }
 };
+
+export const updateItem = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const item = await service.updateItemService(Number(req.params.id), req.body);
+        res.json(item);
+    } catch (err) {
+        next(err);
+    }
+};
