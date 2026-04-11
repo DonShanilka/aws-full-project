@@ -27,3 +27,21 @@ export const deleteItem = async (req: Request, res: Response, next: NextFunction
         next(err);
     }
 };
+
+export const getAllItems = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const items = await service.getAllItemsService();
+        res.json(items);
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getItemById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const item = await service.getItemByIdService(Number(req.params.id));
+        res.json(item);
+    } catch (err) {
+        next(err);
+    }
+};
