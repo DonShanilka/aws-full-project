@@ -18,3 +18,12 @@ export const updateItem = async (req: Request, res: Response, next: NextFunction
         next(err);
     }
 };
+
+export const deleteItem = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await service.deleteItemService(Number(req.params.id));
+        res.json({message: "Item Deleted"});
+    } catch (err) {
+        next(err);
+    }
+};
