@@ -11,8 +11,14 @@ export const updateItemService = async (id: number, data: Item) => {
 
 export const deleteItemService = async (id: number) => {
     return repo.deleteItem(id);
-}
+};
 
 export const getAllItemsService = async () => {
     return repo.getAllItems();
+};
+
+export const getItemByIdService = async (id: number) => {
+    const item = await repo.getItemById(id);
+    if(!item) throw new Error("Item Not Found");
+    return item;
 };

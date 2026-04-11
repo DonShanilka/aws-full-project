@@ -18,7 +18,7 @@ export const deleteItem = async (id: number) => {
     });
 };
 
-export const getById = async (id:number) => {
+export const getItemById = async (id:number) => {
     return prisma.item.findUnique({where: {id}});
 };
 
