@@ -13,3 +13,6 @@ export const deleteItemService = async (id: number) => {
     return repo.deleteItem(id);
 }
 
+export const getAllItemsService = async () => {
+    return repo.getAllItems();
+};
