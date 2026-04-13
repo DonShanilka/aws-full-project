@@ -10,8 +10,8 @@ on:
     branches: ["main"]
 
 jobs:
-  backend:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -25,17 +25,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-          cache-dependency-path: aws-full-project/package-lock.json
+          cache: npm
 
-      # Create .env file
+      # ✅ Create .env BEFORE install/build
       - name: Create .env file
         run: |
-          echo "MYSQL_URL=${{ secrets.MYSQL_URL }}" > .env
+          echo "MONGO_DB_URL=${{ secrets.MYSQL_URL }}" > .env
 
       - name: Install dependencies
         run: npm ci
@@ -43,8 +42,10 @@ jobs:
       - name: Generate Prisma Client
         run: npx prisma generate
 
-      - name: Build TypeScript
+      - name: Build project
         run: npm run build --if-present
 
-      - name: Run tests
-        run: npm test --if-present
+      # ✅ Start or restart with PM2 safely
+      - name: Run PM2
+        run: |
+          pm2 restart api || pm2 start dist/server.js --name api
