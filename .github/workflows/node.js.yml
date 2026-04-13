@@ -34,7 +34,7 @@ jobs:
       # ✅ Create .env BEFORE install/build
       - name: Create .env file
         run: |
-          echo "MONGO_DB_URL=${{ secrets.MYSQL_URL }}" > .env
+          echo "MYSQL_URL=${{ secrets.MYSQL_URL }}" > .env
 
       - name: Install dependencies
         run: npm ci
