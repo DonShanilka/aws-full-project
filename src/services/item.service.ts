@@ -1,5 +1,5 @@
 import * as repo from "../repositories/item.repository";
-import {Item} from "../models/item.model";
+import { Item } from "../models/item.model";
 
 export const createItemService = async (data: Item) => {
     return repo.createItem(data);
@@ -19,6 +19,6 @@ export const getAllItemsService = async () => {
 
 export const getItemByIdService = async (id: number) => {
     const item = await repo.getItemById(id);
-    if(!item) throw new Error("Item Not Found");
+    if (!item) throw new Error("Item Not Found");
     return item;
 };

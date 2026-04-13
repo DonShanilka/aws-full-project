@@ -1,7 +1,13 @@
-import {Request, Response, NextFunction} from "express";
+import { Request, Response, NextFunction } from "express";
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).json({
+
+    console.error("🔥 ERROR:", err);
+
+    const statusCode = err.statusCode || 500;
+
+    res.status(statusCode).json({
         message: err.message || "Internal Server Error",
+        error: process.env.NODE_ENV === "development" ? err : undefined
     });
 };
