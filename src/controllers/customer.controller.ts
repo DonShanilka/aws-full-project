@@ -37,4 +37,13 @@ export const deleteCustomer = async (req: Request, res: Response, next: NextFunc
     } catch (err) {
         next(err);
     }
+};
+
+export const getAllCustomer = async (res: Response, next: NextFunction) => {
+    try {
+        const customer = await service.getAllCustomerService();
+        res.json(customer);
+    } catch (err) {
+        next(err);
+    }
 }
