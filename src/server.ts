@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import itemRoutes from "./routes/item.routes";
+import customerRoutes from "./routes/customer.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/items", itemRoutes);
+app.use("/api/customers", customerRoutes);
 
 // Health check
 app.get("/ping", (req, res) => {
