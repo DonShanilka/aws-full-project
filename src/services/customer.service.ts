@@ -13,3 +13,6 @@ export const deleteCustomerService = async (id: number) => {
     return repo.deleteCustomer(id);
 }
 
+export const getAllCustomerService = async () => {
+    return repo.getAllCustomer();
+}
