@@ -29,3 +29,12 @@ export const updateCustomer = async (req: Request, res: Response, next: NextFunc
         next(err);
     }
 };
+
+export const deleteCustomer = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await service.deleteCustomerService(Number(req.params.id));
+        res.json({message: "Customer Deleted"});
+    } catch (err) {
+        next(err);
+    }
+}
