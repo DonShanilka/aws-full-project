@@ -25,3 +25,10 @@ export const deleteCustomer = async (id: number) => {
         where: {id}
     })
 };
+
+export const getCustomerById = async (id: number) => {
+    return prisma.customer.findUnique({
+        where: {id}
+    })
+};
+
