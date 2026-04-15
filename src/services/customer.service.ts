@@ -9,3 +9,7 @@ export const updateCustomerService = async (id: number, data: Customer) => {
     return repo.updateCustomer(id, data);
 };
 
+export const deleteCustomerService = async (id: number) => {
+    return repo.deleteCustomer(id);
+}
+
