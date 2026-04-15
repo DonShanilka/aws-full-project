@@ -39,7 +39,7 @@ export const deleteCustomer = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export const getAllCustomer = async (res: Response, next: NextFunction) => {
+export const getAllCustomer = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const customer = await service.getAllCustomerService();
         res.json(customer);
