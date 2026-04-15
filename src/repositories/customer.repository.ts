@@ -8,7 +8,7 @@ export const createCustomer = async (data: Customer) => {
             email: data.email
         }
     })
-}
+};
 
 export const updateCustomer = async (id: number, data: Customer) => {
     return prisma.customer.update({
@@ -18,4 +18,10 @@ export const updateCustomer = async (id: number, data: Customer) => {
             email: data.email
         }
     })
-}
+};
+
+export const deleteCustomer = async (id: number) => {
+    return prisma.customer.delete({
+        where: {id}
+    })
+};
