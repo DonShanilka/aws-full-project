@@ -46,4 +46,13 @@ export const getAllCustomer = async (res: Response, next: NextFunction) => {
     } catch (err) {
         next(err);
     }
-}
+};
+
+export const getCustomerById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const customer = await service.getCustomerByIdService(Number(req.params.id));
+        res.json(customer);
+    } catch (err) {
+        next(err);
+    }
+};

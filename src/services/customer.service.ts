@@ -17,7 +17,7 @@ export const getAllCustomerService = async () => {
     return repo.getAllCustomer();
 }
 
-export const getCustomerById = async (id: number) => {
+export const getCustomerByIdService = async (id: number) => {
     const customer = await repo.getCustomerById(id);
     if (!customer) throw new Error("Customer Not Found");
     return customer;
