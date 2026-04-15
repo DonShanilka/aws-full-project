@@ -5,8 +5,17 @@ export const createCustomer = async (data: Customer) => {
     return prisma.customer.create({
         data: {
             name: data.name,
-            email: data.email,
+            email: data.email
         }
     })
 }
 
+export const updateCustomer = async (id: number, data: Customer) => {
+    return prisma.customer.update({
+        where: {id},
+        data: {
+            name: data.name,
+            email: data.email
+        }
+    })
+}
