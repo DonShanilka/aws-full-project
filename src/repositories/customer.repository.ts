@@ -32,3 +32,6 @@ export const getCustomerById = async (id: number) => {
     })
 };
 
+export const getAllCustomer = async () => {
+    return prisma.customer.findMany();
+}
